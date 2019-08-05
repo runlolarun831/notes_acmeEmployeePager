@@ -1,0 +1,27 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <ul>
+    </ul>
+  <script>
+    /* Our applications may consume data from another application known as an API.
+    Your application may make a request to get data from anothoer API
+    URL blah blah blah.com/api/products
+    */
+    //grab data from api and put into unordered list using built in method from the api
+    //call fetch from this api
+    //check in console in dev tools
+    const loadData = async()=> {
+      const response = await fetch('https://acme-users-api-rev.herokuapp.com/api/products');
+      const data = await response.json();
+      //console.log(data);
+      const html = data.map( product => `<li>${ product.name}</li>`).join('');
+      document.querySelector('ul').innerHTML = html;
+      console.log(html);
+    }
+    loadData();
+    console.log('hello');
+  </script>
+  </body>
+</html>
