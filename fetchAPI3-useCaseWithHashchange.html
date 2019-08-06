@@ -1,0 +1,34 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <ul>
+      </ul>
+      <div id='detail'></div>
+
+  <script>
+/*we can use fetch for single page applications,
+we can create links--add an href to the html to create a link for each item, if user clicks a link, you can get more data
+like different ids for the product. the hash changes after link is clicked.  they become bookmarkable with hash . or send link to someone else*/
+
+window.addEventListener('hashchange', (ev)=> { ///click on links and see different ids
+  const id = window.location.hash.slice(1);
+  document.querySelector('#detail').innerHTML = `Load details for product ${id}`;
+});
+
+const id = window.location.hash.slice(1);
+if (id) {
+  document.querySelector('#detail').innerHTML = `Load details for product ${id}`;
+}
+
+fetch('https://acme-users-api-rev.herokuapp.com/api/products')
+.then(response => response.json())
+.then( data => {
+  const html = data.map( product => `<li><a href='#${product.id}'>${ product.name}</a></li>`).join('');
+  document.querySelector('ul').innerHTML = html;
+});
+
+
+</script>
+</body>
+</html>

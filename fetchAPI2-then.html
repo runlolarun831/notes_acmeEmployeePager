@@ -1,0 +1,42 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <ul>
+    </ul>
+  <script>
+    /* await needs to be used in an async function
+    or .then
+    */
+    // const loadData = async()=> {
+    //   const response = await fetch('https://acme-users-api-rev.herokuapp.com/api/products');
+    //   const data = await response.json();
+    //   //console.log(data);
+    //   const html = data.map( product => `<li>${ product.name}</li>`).join('');
+    //   document.querySelector('ul').innerHTML = html;
+    //   console.log(html);
+    // }
+    // loadData();
+    // console.log('hello');
+    /***************************************************************/
+    // fetch('https://acme-users-api-rev.herokuapp.com/api/products')
+    //   .then((response)=> {
+    //     response.json()
+    //       .then( data => {
+    //         const html = data.map( product => `<li>${ product.name}</li>`).join('');
+    //         document.querySelector('ul').innerHTML = html;
+    //       });
+    //   })
+    /***************************************************************/
+    //or use promises with .then and callbacks()  It reads in a easier, linear way
+    fetch('https://acme-users-api-rev.herokuapp.com/api/products')
+      .then(response => response.json())
+      .then( data => {
+        const html = data.map( product => `<li>${ product.name}</li>`).join('');
+        document.querySelector('ul').innerHTML = html;
+      });
+
+
+  </script>
+  </body>
+</html>
